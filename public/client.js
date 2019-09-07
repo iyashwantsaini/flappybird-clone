@@ -27,24 +27,28 @@ function moveUp(){
   by-=20;
 }
 
-// var pipe=[];
-// pipe[0]={
-//   x:window.innerWidth-200,
-//   y:0
-// }
+var pipe=[];
+pipe[0]={
+  x:window.innerWidth-600,
+  y:pipeNorth.height+gap
+}
 
 function draw(){
     ctx.drawImage(bg,0,0);
   
+  for(var i=0 ; i<pipe.length ; i++){
+      ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
+      ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
+      pipe[i].x--;
+    
+      if(pipe[i].x == 500){
+        pipe.push({
+          x:window.innerWidth-600,
+          y:Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height
+        })
+      }
+  }
   
-  // for(var i=0 ; i<pipe.length ; i++){
-      // ctx.drawImage(pipeNorth,window.innerWidth-500,0);
-      // ctx.drawImage(pipeSouth,window.innerWidth-500,pipeNorth.height+gap);
-    // pipe[i].x--;
-  // }
-  
-  ctx.drawImage(pipeNorth,200,200);
-
   ctx.drawImage(fg,0,window.innerHeight-fg.height);
   ctx.drawImage(bird,bx,by);
   
