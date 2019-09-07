@@ -59,28 +59,28 @@ function draw(){
       }
     
         if( bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+bird.height >= pipe[i].y+pipeNorth.height+gap) || bY + bird.height >=  window.innerHeight - fg.height){
+          location.reload();
           if(hit==1){
           hit.play();
           }
           hit++;
-          location.reload(); // reload the page
         }
     
-        if(pipe[i].x >= 90){
+    if(pipe[i].x <= 90){
             score++;
             scor.play();
-        }
-    
+      } 
   }
   
   ctx.drawImage(fg,0,window.innerHeight-fg.height);
   ctx.drawImage(bird,bX,bY);
+  bY+=gravity;
   
   ctx.fillStyle = "#000";
-    ctx.font = "20px Verdana";
-    ctx.fillText("Score : "+score,10,cvs.height-20);
+  ctx.font = "20px Verdana";
+  ctx.fillText("Score : "+score,10,cvs.height-20);
   
-  bY+=gravity;
+  
   requestAnimationFrame(draw);
 }
 
