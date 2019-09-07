@@ -20,16 +20,16 @@ var gap=85;
 var constant=pipeNorth.height+gap;
 var bx=100;
 var by=250;
-var gravity=1;
+var gravity=3;
 
 document.addEventListener("keydown",moveUp);
 function moveUp(){
-  by-=20;
+  by-=35;
 }
 
 var pipe=[];
 pipe[0]={
-  x:window.innerWidth-600,
+  x:window.innerWidth-500,
   y:0
 }
 
@@ -38,12 +38,12 @@ function draw(){
   
   for(var i=0 ; i<pipe.length ; i++){
       ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
-      ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+pipNorth.height+gap);
-      pipe[i].x--;
+      ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+pipeNorth.height+gap);
+      pipe[i].x-=4;
     
-      if(pipe[i].x == 500){
+      if(pipe[i].x == 600){
         pipe.push({
-          x:window.innerWidth-600,
+          x:window.innerWidth-500,
           y:Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height
         });
       }
