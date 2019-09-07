@@ -1,4 +1,7 @@
 var cvs = document.getElementById("canvas");
+
+cvs.width = window.innerWidth-20;
+cvs.height = window.innerHeight-20;
 var ctx = cvs.getContext("2d");
 
 var bird = new Image();
@@ -12,3 +15,11 @@ bg.src = "https://cdn.glitch.com/180b6160-0431-44ea-b9dd-f7b9082bb344%2Fback.jpg
 fg.src = "https://cdn.glitch.com/180b6160-0431-44ea-b9dd-f7b9082bb344%2Fbase.png?v=1567886163119";
 pipeNorth.src = "https://cdn.glitch.com/180b6160-0431-44ea-b9dd-f7b9082bb344%2Fpipe-green-down.png?v=1567885972335";
 pipeSouth.src = "https://cdn.glitch.com/180b6160-0431-44ea-b9dd-f7b9082bb344%2Fpipe-green.png?v=1567885058321";
+
+function draw(){
+  
+  ctx.drawImage(bg,0,0);
+  
+}
+
+draw();
