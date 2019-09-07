@@ -18,14 +18,36 @@ pipeSouth.src = "https://cdn.glitch.com/180b6160-0431-44ea-b9dd-f7b9082bb344%2Fp
 
 var gap=85;
 var constant=pipeNorth.height+gap;
+var bx=100;
+var by=250;
+var gravity=1;
+
+document.addEventListener("keydown",moveUp);
+function moveUp(){
+  by-=20;
+}
+
+var pipe=[];
+pipe[0]={
+  x:cvs.width,
+  y:0
+}
 
 function draw(){
   
+  for(var i=0 ; i<pipe.length ; i++){
+      ctx.drawImage(pipeNorth,window.idth+pipe[i].x,pipe[i].y);
+      ctx.drawImage(pipeSouth,window.innerWidth+pipe[i].y,pipe[i].y+constant);
+    pipe[i].x--;
+  }
+  
   ctx.drawImage(bg,0,0);
-  ctx.drawImage(pipeNorth,window.innerWidth-200,0);
-  ctx.drawImage(pipeSouth,window.innerWidth-200,constant);
+
   ctx.drawImage(fg,0,window.innerHeight-fg.height);
-  ctx.drawImage(bird,100,100);
+  ctx.drawImage(bird,bx,by);
+  
+  by+=gravity;
+  requestAnimationFrame(draw);
 }
 
 draw();
