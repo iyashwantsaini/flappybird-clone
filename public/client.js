@@ -30,7 +30,7 @@ function moveUp(){
 var pipe=[];
 pipe[0]={
   x:window.innerWidth-600,
-  y:pipeNorth.height+gap
+  y:0
 }
 
 function draw(){
@@ -38,14 +38,14 @@ function draw(){
   
   for(var i=0 ; i<pipe.length ; i++){
       ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
-      ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
+      ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+pipNorth.height+gap);
       pipe[i].x--;
     
       if(pipe[i].x == 500){
         pipe.push({
           x:window.innerWidth-600,
           y:Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height
-        })
+        });
       }
   }
   
