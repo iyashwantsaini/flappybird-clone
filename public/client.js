@@ -18,18 +18,22 @@ pipeSouth.src = "https://cdn.glitch.com/180b6160-0431-44ea-b9dd-f7b9082bb344%2Fp
 
 var fly = new Audio();
 var scor = new Audio();
+var hit = new Audio();
 
-fly.src = "";
-scor.src = "sounds/score.mp3";
+fly.src = "https://cdn.glitch.com/180b6160-0431-44ea-b9dd-f7b9082bb344%2Fwing.wav?v=1567885013238";
+scor.src = "https://cdn.glitch.com/180b6160-0431-44ea-b9dd-f7b9082bb344%2Fpoint.wav?v=1567884996415";
+hit.src = "https://cdn.glitch.com/180b6160-0431-44ea-b9dd-f7b9082bb344%2Fhit.wav?v=1567884990411";
 
 var gap=195;
 var bX=100;
 var bY=250;
 var gravity=3;
 var score = 0;
+var hit=1;
 
 document.addEventListener("keydown",moveUp);
 function moveUp(){
+  fly.play();
   bY-=35;
 }
 
@@ -55,10 +59,14 @@ function draw(){
       }
     
         if( bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+bird.height >= pipe[i].y+pipeNorth.height+gap) || bY + bird.height >=  window.innerHeight - fg.height){
-            location.reload(); // reload the page
+          if(hit==1){
+          hit.play();
+          }
+          hit++;
+          location.reload(); // reload the page
         }
     
-        if(pipe[i].x == 5){
+        if(pipe[i].x >= 90){
             score++;
             scor.play();
         }
@@ -67,6 +75,10 @@ function draw(){
   
   ctx.drawImage(fg,0,window.innerHeight-fg.height);
   ctx.drawImage(bird,bX,bY);
+  
+  ctx.fillStyle = "#000";
+    ctx.font = "20px Verdana";
+    ctx.fillText("Score : "+score,10,cvs.height-20);
   
   bY+=gravity;
   requestAnimationFrame(draw);
