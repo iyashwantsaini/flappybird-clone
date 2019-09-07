@@ -68,7 +68,7 @@ function draw(){
     
     if(pipe[i].x <= 90){
             score++;
-            scor.play();
+            // scor.play();
       } 
   }
   
